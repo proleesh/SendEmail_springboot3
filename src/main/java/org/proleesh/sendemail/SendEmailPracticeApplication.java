@@ -1,6 +1,7 @@
 package org.proleesh.sendemail;
 
 import lombok.extern.slf4j.Slf4j;
+import org.proleesh.sendemail.exception.JavaStackException;
 import org.proleesh.sendemail.service.TestService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +20,13 @@ public class SendEmailPracticeApplication {
     public CommandLineRunner commandLineRunner(TestService testService) {
         return args -> {
             log.info(testService.getServiceName());
+        };
+    }
+
+    @Bean
+    public CommandLineRunner commandLineRunner2(){
+        return args -> {
+            throw new JavaStackException("Java Stack Exception");
         };
     }
 }
