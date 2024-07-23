@@ -1,1 +1,17 @@
-spring.application.name=SendEmail_Practice
+spring:
+  application:
+    name: SendEmail_Practice
+  mail:
+    host: smtp.mail.yahoo.com
+    port: 465
+    username: merci726@yahoo.com
+    password: vhajbstatutqtszi
+    properties:
+      "[mail.smtp.auth]": true
+      "[mail.smtp.starttls.enable]": true
+      "[mail.smtp.socketFactory.class]": javax.net.ssl.SSLSocketFactory
+      "[mail.smtp.socketFactory.fallback]": false
+      "[mail.smtp.connectiontimeout]": 5000
+      "[mail.smtp.timeout]": 3000
+      "[mail.smtp.writetimeout]": 5000
+
