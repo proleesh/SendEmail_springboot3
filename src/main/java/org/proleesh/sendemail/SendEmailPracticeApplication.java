@@ -3,6 +3,7 @@ package org.proleesh.sendemail;
 import lombok.extern.slf4j.Slf4j;
 import org.proleesh.sendemail.exception.JavaStackException;
 import org.proleesh.sendemail.service.TestService;
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,7 +14,10 @@ import org.springframework.context.annotation.Bean;
 public class SendEmailPracticeApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SendEmailPracticeApplication.class, args);
+        SpringApplication sa = new SpringApplication(SendEmailPracticeApplication.class);
+        sa.setBannerMode(Banner.Mode.OFF);
+        sa.run(args);
+//        SpringApplication.run(SendEmailPracticeApplication.class, args);
     }
 
     @Bean
@@ -23,10 +27,10 @@ public class SendEmailPracticeApplication {
         };
     }
 
-    @Bean
-    public CommandLineRunner commandLineRunner2(){
-        return args -> {
-            throw new JavaStackException("Java Stack Exception");
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner2(){
+//        return args -> {
+//            throw new JavaStackException("Java Stack Exception");
+//        };
+//    }
 }
