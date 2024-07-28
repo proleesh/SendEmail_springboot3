@@ -19,6 +19,9 @@ spring:
     log-startup-info: false
     lazy-initialization: true
 
+  messages:
+    basename: i18n/common, i18n/index
+    fallback-to-system-locale: false
 logging:
   file:
     name: ./logs/javaStack.log
@@ -30,8 +33,6 @@ server:
   port: 80
   servlet:
     session:
-      persistent: true
-      store_dir: /tmp/session-store
       tracking-modes:
         - cookie
         - url

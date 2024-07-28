@@ -1,3 +1,3 @@
-org.springframework.boot.diagnostics.FailureAnalyzer=\
-  org.proleesh.sendemail.analyzer.PortInUseFailureAnalyzer,\
-  org.proleesh.sendemail.analyzer.JavaStackFailureAnalyzer
+#org.springframework.boot.diagnostics.FailureAnalyzer=\
+#  org.proleesh.sendemail.analyzer.PortInUseFailureAnalyzer,\
+#  org.proleesh.sendemail.analyzer.JavaStackFailureAnalyzer
