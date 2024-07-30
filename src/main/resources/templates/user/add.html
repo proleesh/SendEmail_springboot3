@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>사용자 추가</title>
+    <script>
+        // 요청 제출
+        function doCommit(){
+            let userName = document.getElementById("userName").value;
+            let note = document.getElementById("note").value;
+
+            let user = {
+                "userName" : userName,
+                "note": note
+            };
+
+            fetch("./insert",{
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json;charset=UTF-8"
+                },
+                body: JSON.stringify(user)
+            }).then(res => {let result = res.json();
+                if(result == null || result.id == null){
+                    alert("입력 실패!");
+                    return;
+                }
+                alert("입력 성공")
+            })
+                .then(data=>{
+                    console.log(data)
+                })
+        }
+    </script>
+</head>
+<body>
+<form id="insertForm">
+    <table>
+        <tr>
+            <td>사용자: </td>
+            <td><input id="userName" name="userName"></td>
+        </tr>
+        <tr>
+            <td>비고</td>
+            <td><input id="note" name="note"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align: center">
+                <input id="submit" onclick="doCommit()" type="button" value="제출">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -37,4 +37,16 @@ public class RestController {
         paramsMap.put("strVal", strVal);
         return paramsMap;
     }
+
+    @GetMapping("/request/array")
+    @ResponseBody
+    public Map<String, Object> requestArray(
+            int[] intArr, Long[] longArr, String[] strArr
+    ){
+        var paramsMap = new HashMap<String, Object>();
+        paramsMap.put("intArr", intArr);
+        paramsMap.put("longArr", longArr);
+        paramsMap.put("strArr", strArr);
+        return paramsMap;
+    }
 }
