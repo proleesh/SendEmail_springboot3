@@ -1,12 +1,14 @@
 package org.proleesh.sendemail.config;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
+import org.springframework.data.redis.core.RedisTemplate;
 
 import java.time.Duration;
 
@@ -16,7 +18,7 @@ public class RedisConfig {
     @Bean(name="RedisConnectionFactory")
     public RedisConnectionFactory redisConnectionFactory() {
         // Redis configuration
-        var redisCfg = new RedisStandaloneConfiguration("192.0.0.2", 6379);
+        var redisCfg = new RedisStandaloneConfiguration("127.0.0.1", 6379);
         // Password setting
         redisCfg.setPassword("proleesh");
         // Connection pool configuration
@@ -32,5 +34,12 @@ public class RedisConfig {
                 .build();
         var connectionFactory = new LettuceConnectionFactory(redisCfg, lettuceCfg);
         return connectionFactory;
+    }
+
+    @Bean(name="redisTemplate")
+    public RedisTemplate<Object, Object> redisTemplate(@Autowired RedisConnectionFactory factory, LettuceConnectionFactory redisConnectionFactory) {
+        var redisTemplate = new RedisTemplate<Object, Object>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory);
+        return redisTemplate;
     }
 }
