@@ -9,6 +9,7 @@ import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.lettuce.LettucePoolingClientConfiguration;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 
 import java.time.Duration;
 
@@ -40,6 +41,16 @@ public class RedisConfig {
     public RedisTemplate<Object, Object> redisTemplate(@Autowired RedisConnectionFactory factory, LettuceConnectionFactory redisConnectionFactory) {
         var redisTemplate = new RedisTemplate<Object, Object>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
+
+        // Redis key value setting, StringRedisSerializer
+        redisTemplate.setKeySerializer(RedisSerializer.string());
+        // Redis hash key setting, StringRedisSerializer
+        redisTemplate.setHashKeySerializer(RedisSerializer.java());
+        // Redis key serializer setting, JdkSerializationRedisSerializer
+        redisTemplate.setValueSerializer(RedisSerializer.java());
+        // Redis hash key serializer setting, JdkSerializationRedisSerializer
+        redisTemplate.setHashValueSerializer(RedisSerializer.java());
+
         return redisTemplate;
     }
 }
