@@ -1,4 +1,11 @@
 spring:
+  security:
+    user:
+      name: myuser
+      password: 123456
+    filter:
+      order: -100
+      dispatcher-types: async, error, request
   application:
     name: SendEmail_Practice
   mail:
